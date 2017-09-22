@@ -26,10 +26,7 @@ class Main {
         }
     }
 
-    private static void initializeModule() {
-        comands.put("привет", new Comand(() -> System.out.println("Hello World"), "Говорит вам первые слова программирования"));
-        System.out.println("Приветвую тебя пользователь. Узнать все команды \"помощь\"");
-    }
+    private static final HashMap<String, Comand> comands = new HashMap<>();
 
     private static void getReader(String decode) {
         try {
@@ -58,11 +55,15 @@ class Main {
     }
 
     static BufferedReader re = null;
-    private static HashMap<String, Comand> comands = new HashMap<>();
+    private static final ArrayList<String> help = new ArrayList<>();
     private static ArrayList<String> kaut;
-    private static ArrayList<String> help = new ArrayList<>();
-    private static ArrayList<String> Decode = new ArrayList<>();
-    static String Decoderer = getDecode();
+    private static final ArrayList<String> Decode = new ArrayList<>();
+    static final String Decoderer = getDecode();
+
+    private static void initializeModule() {
+        comands.put("привет", new Comand(() -> System.out.println("Hello World")));
+        System.out.println("Приветвую тебя пользователь. Узнать все команды \"помощь\"");
+    }
 
     private static void getModules() {
         Scanner file = null;
@@ -124,7 +125,7 @@ class Main {
                 System.out.println((factorial(Integer.parseInt(kaut.get(1)))).toString());
                 break;
             case "перевод_числа":
-                System.out.println(toBiter(Integer.parseInt(kaut.get(1)), Integer.parseInt(kaut.get(2)), kaut.get(3), true));
+                System.out.println(toBiter(Integer.parseInt(kaut.get(1)), Integer.parseInt(kaut.get(2)), kaut.get(3)));
                 break;
             case "угадай_число":
                 createGame(Integer.parseInt(kaut.get(1)), Integer.parseInt(kaut.get(2)));

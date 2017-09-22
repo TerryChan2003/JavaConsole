@@ -7,8 +7,8 @@ class Module {
 
     static class Comand {
         String name;
-        Runnable command;
-        String help;
+        final Runnable command;
+        final String help;
 
         Comand(String name, Runnable command, String help) {
             this.name = name;
@@ -16,8 +16,8 @@ class Module {
             this.help = help;
         }
 
-        Comand(Runnable command, String help) {
-            this.help = help;
+        Comand(Runnable command) {
+            this.help = "Говорит вам первые слова программирования";
             this.command = command;
         }
     }

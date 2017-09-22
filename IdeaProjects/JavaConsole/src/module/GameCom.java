@@ -9,7 +9,7 @@ import java.util.Set;
 
 import static module.Main.Decoderer;
 
-public class GameCom {
+class GameCom {
     static void createGame(int min, int max) throws IOException {
         BufferedReader r = new BufferedReader(new InputStreamReader(System.in, Decoderer));
         System.out.println("Вы запустили игру угадай число. Если вы захотите выйти пишите \"exit\"");

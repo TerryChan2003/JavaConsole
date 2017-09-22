@@ -3,7 +3,7 @@ package module;
 import java.math.BigInteger;
 
 class MathCommands {
-    private static char[] digits = {
+    private static final char[] digits = {
             '0', '1', '2', '3', '4', '5',
             '6', '7', '8', '9', 'a', 'b',
             'c', 'd', 'e', 'f', 'g', 'h',
@@ -41,7 +41,7 @@ class MathCommands {
         return byter;
     }
 
-    static StringBuilder ToHexer(boolean com, BigInteger byter, StringBuilder str, int to, String byt) {
+    private static StringBuilder ToHexer(boolean com, BigInteger byter, StringBuilder str, int to, String byt) {
         BigInteger[] jk;
         short ost;
         if (byter.toString().equals("0")) byter = new BigInteger(byt).abs();
@@ -56,7 +56,7 @@ class MathCommands {
         return str;
     }
 
-    static String toBiter(int in, int to, String byt, boolean com) throws Exception {
+    static String toBiter(int in, int to, String byt) {
         StringBuilder str = new StringBuilder("");
         BigInteger byter;
         byter = BigInteger.valueOf(0);
@@ -64,16 +64,15 @@ class MathCommands {
         boolean isTenTo = to == 10;
         if (to >= 2 && to <= digits.length) {
             if (in >= 2 && in <= digits.length) {
-                if (!isTenIn) byter = toTen(com, in, byt);
-                if (!isTenTo) str = ToHexer(com, byter, str, to, byt);
-                if (isTenTo && com) str.insert(0, "Получаем: " + byter);
-                if (com && !isTenTo) str.insert(0, "Соединяем остатки снизу вверх, получаем: ");
+                if (!isTenIn) byter = toTen(true, in, byt);
+                if (!isTenTo) str = ToHexer(true, byter, str, to, byt);
+                if (isTenTo && true) str.insert(0, "Получаем: " + byter);
+                if (true && !isTenTo) str.insert(0, "Соединяем остатки снизу вверх, получаем: ");
                 return str.toString();
             } else System.out.println("Неверный ввод первого параметра");
         } else System.out.println("Неверный ввод второго параметра");
-        return str.toString();
+        return null;
     }
-
 
     static BigInteger factorial(int g) {
         return g > 1 ? factorial(g - 1).multiply(BigInteger.valueOf(g)) : BigInteger.valueOf(1);
@@ -85,9 +84,7 @@ class MathCommands {
             if (n % i == 0) {
                 System.out.print(i + " ");
                 n /= i;
-            } else {
-                i++;
-            }
+            } else i++;
         }
         System.out.println();
     }
